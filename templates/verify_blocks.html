@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Blok Zinciri Doğrulama</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">
+            <img src="{{ url_for('static', filename='images/voteicon.png') }}" alt="Logo">
+            <span>E-VOTE</span>
+        </div>
+        <div class="nav-links">
+            <a href="{{ url_for('index') }}">Çıkış</a>
+        </div>
+    </nav>
+    <div class="container">
+        <h1>Blok Zinciri Doğrulama</h1>
+        <table class="verification-table">
+            <tr>
+                
+                <th>Seçmen ID</th>
+                <th>Aday ID</th>
+                <th>Zaman Damgası</th>
+                <th>Blok Hash</th>
+                <th>Blok ID</th>
+            </tr>
+            {% for oy in secmen_oylari %}
+            <tr>
+                <td>{{ oy.secmen_id }}</td>
+                <td>{{ oy.aday_id }}</td>
+                <td>{{ oy.zamandamgasi }}</td>
+                <td>{{ oy.blok_hash }}</td>
+                <td>{{ oy.blok_id }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</body>
+</html>

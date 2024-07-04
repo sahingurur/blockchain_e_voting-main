@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-VOTE</title>
+ 
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+    <!--Stylesheet-->
+    <style media="screen">
+        *,
+        *:before,
+        *:after {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background-color: #080710; /* Koyu mavi arka plan */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: 'Poppins', sans-serif;
+            margin: 0; /* Body marginını kaldırma */
+        }
+        .container {
+            display: flex;
+            width: 100%;
+            height: 100%;
+        }
+        .left-side {
+            flex: 1;
+            position: relative;
+            overflow: hidden;
+            background-color: #080710; /* Koyu mavi arka plan */
+        }
+        .left-side img {
+            width: 100%;
+            height: 100vh; /* Sayfa yüksekliğine tam olarak sığacak şekilde ayarlandı */
+            object-fit: cover; /* Resmi tamamen sığdırmak için */
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        .right-side {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #000080; /* Koyu mavi arka plan */
+            padding: 50px; /* Form alanı içeriği için padding */
+        }
+        .form-container {
+            width: 400px;
+            background-color: rgba(255, 255, 255, 0.13);
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
+            padding: 50px 35px;
+        }
+        .form-container h3 {
+            font-size: 32px;
+            font-weight: 500;
+            line-height: 42px;
+            text-align: center;
+            margin-bottom: 30px;
+            color: #ffffff; /* Form başlığı rengi beyaz */
+        }
+        .form-container label {
+            font-size: 16px;
+            font-weight: 500;
+            margin-top: 20px;
+            color: #ffffff;
+            display: block; /* Label'ları blok element olarak ayarla */
+        }
+        .form-container input {
+            height: 50px;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.07);
+            border-radius: 3px;
+            padding: 0 10px;
+            margin-top: 8px;
+            margin-bottom: 15px; /* Textboxlar arasına boşluk eklemek için margin-bottom ayarı */
+            font-size: 14px;
+            font-weight: 300;
+            color: #ffffff;
+            border: none;
+            outline: none;
+        }
+        .form-container button {
+            margin-top: 30px;
+            width: 100%;
+            background-color: #ffffff;
+            color: #080710;
+            padding: 15px 0;
+            font-size: 18px;
+            font-weight: 600;
+            border-radius: 5px;
+            cursor: pointer;
+            border: none;
+            outline: none;
+        }
+        .form-container .social {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .form-container .social div {
+            width: 150px;
+            border-radius: 3px;
+            padding: 5px 10px;
+            background-color: rgba(255, 255, 255, 0.27);
+            color: #eaf0fb;
+            text-align: center;
+            margin-right: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .form-container .social div:hover {
+            background-color: rgba(255, 255, 255, 0.47);
+        }
+        .form-container .social i {
+            margin-right: 4px;
+        }
+        .flash-message {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .flash-message .alert {
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        .flash-message .alert-danger {
+            background-color: #f44336;
+            color: white;
+        }
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: white;
+            padding: 10px 20px;
+            position: absolute;
+            top: 0;
+            width: 100%;
+            z-index: 2;
+        }
+        .navbar .logo {
+            display: flex;
+            align-items: center;
+        }
+        .navbar .logo img {
+            height: 40px;
+            margin-right: 10px;
+        }
+        .navbar .logo span {
+            font-size: 1.5rem;
+            color: black;
+            font-weight: 600;
+        }
+        .navbar .nav-links {
+            display: flex;
+            align-items: center;
+        }
+        .navbar .nav-links a {
+            color: black;
+            text-decoration: none;
+            margin-left: 20px;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        .navbar .nav-links a:hover {
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav class="navbar">
+            <div class="logo">
+                <img src="static/images/voteicon.png" alt="Logo">
+                <span>E-VOTE</span>
+            </div>
+            <div class="nav-links">
+                <a href="{{ url_for('results') }}">Sonuçlar</a>
+                <a href="{{ url_for('admin_login') }}">Yönetici Girişi</a>
+
+            </div>
+        </nav>
+        <div class="left-side">
+            <!-- You can replace the image URL below with your desired image -->
+            <img src="static/images/userlogin.webp" alt="Background Image">
+        </div>
+        <div class="right-side">
+            <div class="form-container">
+                <h3>E-VOTE</h3>
+                <div class="flash-message">
+                    {% with messages = get_flashed_messages(with_categories=true) %}
+                        {% if messages %}
+                            {% for category, message in messages %}
+                                <div class="alert alert-{{ category }}">{{ message }}</div>
+                            {% endfor %}
+                        {% endif %}
+                    {% endwith %}
+                </div>
+                <form method="POST" action="{{ url_for('user_login') }}">
+                    <label for="secmen_id">Seçmen ID</label>
+                    <input type="text" id="secmen_id" name="secmen_id" required>
+                    <label for="sifre">Şifre</label>
+                    <input type="password" id="sifre" name="sifre" required>
+                    <button type="submit">Giriş Yap</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

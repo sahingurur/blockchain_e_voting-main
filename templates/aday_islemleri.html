@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Aday İşlemleri</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="navbar">
+        <div class="logo">
+            <img src="{{ url_for('static', filename='images/voteicon.png') }}" alt="Logo">
+            <span>Seçim Sistemi</span>
+        </div>
+        <div class="nav-links">
+            <a href="{{ url_for('index') }}">Ana Sayfa</a>
+            <a href="{{ url_for('merkle_roots') }}">Merkle Roots</a>
+            <a href="{{ url_for('verify_blocks') }}">Blok Doğrulama</a>
+        </div>
+    </div>
+
+    <div class="container admin-panel">
+        <h2>Aday İşlemleri</h2>
+        <form action="{{ url_for('aday_ekle') }}" method="post" class="mt-3">
+            <input type="text" name="aday_adi" placeholder="Aday Adı" required>
+            <input type="text" name="aday_foto" placeholder="Aday Foto URL" required>
+            <button type="submit" class="btn">Aday Ekle</button>
+        </form>
+        <hr>
+        <h3>Mevcut Adaylar</h3>
+        <div class="candidates">
+            {% for aday in adaylar %}
+                <div class="card">
+                    <img src="{{ url_for('static', filename='images/' + aday.aday_foto)  }}" alt="{{ aday.aday_adi }}">
+                    <h3>{{ aday.aday_adi }}</h3>
+                    <a href="{{ url_for('aday_sil', aday_id=aday.aday_id) }}" class="btn btn-secondary">Sil</a>
+                    <a href="{{ url_for('aday_guncelle', aday_id=aday.aday_id) }}" class="btn">Güncelle</a>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oy Sonuçları</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!--Stylesheet-->
+    <style>
+        *,
+        *:before,
+        *:after {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background-color: white;
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+        }
+        .container {
+            width: 100%;
+            padding: 20px;
+        }
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: white;
+            padding: 10px 20px;
+            position: sticky;
+            top: 0;
+            width: 100%;
+            z-index: 2;
+        }
+        .navbar .logo {
+            display: flex;
+            align-items: center;
+        }
+        .navbar .logo img {
+            height: 40px;
+            margin-right: 10px;
+        }
+        .navbar .logo span {
+            font-size: 1.5rem;
+            color: black;
+            font-weight: 600;
+        }
+        .navbar .nav-links {
+            display: flex;
+            align-items: center;
+        }
+        .navbar .nav-links a {
+            color: black;
+            text-decoration: none;
+            margin-left: 20px;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        .navbar .nav-links a:hover {
+            color: #333;
+        }
+        .content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            color: white;
+            text-align: center;
+            z-index: 1;
+            position: relative;
+        }
+        .content h1 {
+            font-size: 2.5rem;
+            margin: 20px 0;
+            color: black;
+        }
+        .content table {
+            width: 80%;
+            margin: 20px 0;
+            border-collapse: collapse;
+            background-color: #2a2a4a;
+        }
+        .content table, th, td {
+            border: 1px solid white;
+        }
+        th, td {
+            padding: 10px;
+            text-align: center;
+            color: white;
+        }
+        th {
+            background-color: #1f1f3d;
+        }
+        .chart-container {
+            width: 60%;
+            height: 400px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav class="navbar">
+            <div class="logo">
+                <img src="static/images/voteicon.png" alt="Logo">
+                <span>E-VOTE</span>
+            </div>
+            <div class="nav-links">
+                <a href="{{ url_for('admin_login') }}">Yönetici Girişi</a>
+            </div>
+        </nav>
+        <div class="content">
+            <h1>Oy Sonuçları</h1>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Aday Adı</th>
+                        <th>Toplam Oy</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for aday, oy_sayisi in toplam_oylar.items() %}
+                    <tr>
+                        <td>{{ aday }}</td>
+                        <td>{{ oy_sayisi }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <div class="chart-container">
+                <canvas id="oySonuclariChart"></canvas>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var ctx = document.getElementById('oySonuclariChart').getContext('2d');
+            var oySonuclariChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: [{% for aday in toplam_oylar.keys() %}'{{ aday }}',{% endfor %}],
+                    datasets: [{
+                        label: 'Toplam Oy',
+                        data: [{% for oy_sayisi in toplam_oylar.values() %}{{ oy_sayisi }},{% endfor %}],
+                        backgroundColor: [
+                            'rgba(75, 192, 192, 0.2)',
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(255, 205, 86, 0.2)',
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(153, 102, 255, 0.2)'
+                        ],
+                        borderColor: [
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(255, 205, 86, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(153, 102, 255, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            stepSize: 1,
+                            ticks: {
+                                precision: 0
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(tooltipItem) {
+                                    return tooltipItem.label + ': ' + tooltipItem.raw;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

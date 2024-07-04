@@ -1,0 +1,237 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #000080;
+  color: #ffffff;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fff; /* Beyaz renk */
+  padding: 10px 20px;
+  color: black; /* Siyah yazı rengi */
+}
+
+.navbar .logo {
+  display: flex;
+  align-items: center;
+}
+
+.navbar .logo img {
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+}
+
+.navbar .logo span {
+  font-size: 1.5em;
+  font-weight: bold;
+  color: black; /* Siyah yazı rengi */
+}
+
+.navbar .nav-links a {
+  color: black; /* Siyah yazı rengi */
+  text-decoration: none;
+  margin-left: 20px;
+}
+
+.navbar .nav-links a:hover {
+  text-decoration: underline;
+}
+
+.container {
+  max-width: 1000px;
+  margin: 50px auto;
+  padding: 20px;
+  background-color:#000080(78, 78, 228, 0.6); /* Hafif transparan ve #000080 */
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  color: #fff;
+}
+
+h2 {
+  text-align: center;
+  color: #fff;
+}
+h3{
+  text-align: center;
+  color: #000080;
+}
+
+.verification-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+}
+
+.verification-table th, .verification-table td {
+  padding: 12px 15px;
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+.verification-table th {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.verification-table tr:nth-child(even) {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.verification-table tr:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+.verification-table td {
+  word-break: break-all;
+}
+
+.btn {
+  background-color: #28a745;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: 1em;
+}
+
+.btn-secondary {
+  background-color: #6c757d;
+}
+
+.btn:hover {
+  background-color: #218838;
+}
+
+.btn-secondary:hover {
+  background-color: #5a6268;
+}
+
+.mt-3 {
+  margin-top: 1rem;
+}
+
+.text-center {
+  text-align: center;
+}
+
+/* Merkle Roots sayfası için özel stiller */
+.container.merkle-roots {
+  background-color: rgba(0, 0, 128, 0.6); /* Hafif transparan ve #000080 */
+}
+
+.container.merkle-roots h2 {
+  color: #fff;
+}
+
+.container.merkle-roots .verification-table th {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.container.merkle-roots .verification-table tr:nth-child(even) {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.container.merkle-roots .verification-table tr:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+.admin-links {
+  list-style-type: none;
+  padding: 0;
+  text-align: center;
+}
+
+.admin-links li {
+  margin: 10px 0;
+}
+
+.admin-links a {
+  text-decoration: none;
+  color: #fff;
+  background-color: #28a745;
+  padding: 10px 20px;
+  border-radius: 5px;
+  display: inline-block;
+}
+
+.admin-links a:hover {
+  background-color: #218838;
+}
+
+/* Admin Panel sayfası için özel stiller */
+.container.admin-panel {
+  background-color: rgba(0, 0, 128, 0.6); /* Hafif transparan ve #000080 */
+}
+
+.container.admin-panel h2 {
+  color: #fff;
+}
+.candidates {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.card {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  width: 200px;
+  margin: 10px;
+  text-align: center;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s;
+}
+
+.card img {
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  width: 100%;
+  height: auto;
+}
+
+.card h3 {
+  margin: 10px 0;
+  font-size: 1.2em;
+}
+
+.card button {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  margin: 10px 0;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.card button:hover {
+  background-color: #218838;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+ul {
+  padding: 0;
+}
+
+ul li {
+  list-style: none;
+}
+
+ul li.error {
+  color: red;
+}
+
+ul li.success {
+  color: green;
+}

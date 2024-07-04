@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oy Kullanma</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">
+            <img src="{{ url_for('static', filename='images/voteicon.png') }}" alt="Logo">
+            <span>E-VOTE</span>
+        </div>
+        <div class="nav-links">
+            <a href="{{ url_for('index') }}">Çıkış</a>
+        </div>
+    </nav>
+    <div class="container">
+        <h2>ADAYLAR</h2>
+        <form method="POST">
+            <div class="candidates">
+                {% for aday in adaylar %}
+                    <div class="card">
+                        <img src="{{ url_for('static', filename='images/' + aday.aday_foto) }}" alt="{{ aday.aday_adi }}">
+                        <h3>{{ aday.aday_adi }}</h3>
+                        <button type="submit" name="aday_id" value="{{ aday.aday_id }}">Oy Ver</button>
+                    </div>
+                {% endfor %}
+            </div>
+        </form>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <ul>
+                {% for category, message in messages %}
+                    <li class="{{ category }}">{{ message }}</li>
+                {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+    </div>
+</body>
+</html>

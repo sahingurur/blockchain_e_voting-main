@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Merkle Roots</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">
+            <img src="{{ url_for('static', filename='images/voteicon.png') }}" alt="Logo">
+            <span>E-VOTE</span>
+        </div>
+        <div class="nav-links">
+            <a href="{{ url_for('index') }}">Çıkış</a>
+        </div>
+    </nav>
+    <div class="container merkle-roots">
+        <h2 class="text-center">Merkle Kök Hash'leri</h2>
+        <table class="verification-table">
+            <thead>
+                <tr>
+                    <th>İl</th>
+                    <th>İlçe</th>
+                    <th>Merkle Root</th>
+                    <th>Oy Sayısı</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for il, ilce, merkle_root, oy_sayisi in il_ilce_roots %}
+                <tr>
+                    <td>{{ il }}</td>
+                    <td>{{ ilce }}</td>
+                    <td>{{ merkle_root }}</td>
+                    <td>{{ oy_sayisi }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <div class="text-center mt-3">
+            <a href="{{ url_for('admin_panel') }}" class="btn btn-secondary">Admin Paneline Dön</a>
+        </div>
+    </div>
+</body>
+</html>

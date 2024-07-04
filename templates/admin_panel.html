@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yönetici Paneli</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">
+            <img src="{{ url_for('static', filename='images/voteicon.png') }}" alt="Logo">
+            <span>E-VOTE</span>
+        </div>
+        <div class="nav-links">
+            <a href="{{ url_for('index') }}">Çıkış</a>
+        </div>
+    </nav>
+    <div class="container admin-panel">
+        <h2 class="text-center">Yönetici Paneli</h2>
+        <ul class="admin-links">
+            <li><a href="{{ url_for('results') }}">Oy Sonuçları</a></li>
+            <li><a href="{{ url_for('merkle_roots') }}">Merkle Kökleri</a></li>
+            <li><a href="{{ url_for('verify_blocks') }}">Blokları Doğrula</a></li>
+            <li><a href="{{ url_for('aday_islemleri') }}">Aday İşlemleri</a></li>
+
+        </ul>
+    </div>
+</body>
+</html>

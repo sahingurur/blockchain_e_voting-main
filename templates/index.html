@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Güvenli Seçim Uygulaması E-VOTE</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+    <!--Stylesheet-->
+    <style>
+        *,
+        *:before,
+        *:after {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background-color: #080710;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+        }
+        .container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            background-color: #000080; /* Koyu mavi arka plan rengi */
+        }
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: white;
+            padding: 10px 20px;
+            position: absolute;
+            top: 0;
+            width: 100%;
+            z-index: 2;
+        }
+        .navbar .logo {
+            display: flex;
+            align-items: center;
+        }
+        .navbar .logo img {
+            height: 40px;
+            margin-right: 10px;
+        }
+        .navbar .logo span {
+            font-size: 1.5rem;
+            color: black;
+            font-weight: 600;
+        }
+        .navbar .nav-links {
+            display: flex;
+            align-items: center;
+        }
+        .navbar .nav-links a {
+            color: black;
+            text-decoration: none;
+            margin-left: 20px;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        .navbar .nav-links a:hover {
+            color: #333;
+        }
+        .content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            color: white;
+            text-align: center;
+            z-index: 1;
+            position: relative;
+        }
+        .content h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+        .content p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin-bottom: 30px;
+        }
+        .content .btn {
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #080710;
+            background-color: #ffffff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+        .content .btn:hover {
+            background-color: #f1f1f1;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav class="navbar">
+            <div class="logo">
+                <img src="static/images/voteicon.png" alt="Logo">
+                <span>E-VOTE</span>
+            </div>
+            <div class="nav-links">
+                <a href="{{ url_for('results') }}">Sonuçlar</a>
+                <a href="{{ url_for('admin_login') }}">Yönetici Girişi</a>
+            </div>
+        </nav>
+        <div class="content">
+            <h1>Güvenli Seçim Uygulaması E-VOTE</h1>
+            <p>Güvenli Seçim Sistemi, blokzincir teknolojisi kullanarak seçimlerin güvenli ve şeffaf bir şekilde yapılmasını sağlar. Oylarınızın güvenliği bizim için önemlidir.</p>
+            <a href="{{ url_for('user_login') }}" class="btn">Oy Kullan</a>
+        </div>
+    </div>
+</body>
+</html>

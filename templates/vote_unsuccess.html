@@ -1,0 +1,73 @@
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oy Kullanma Başarısız</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+    <style media="screen">
+        body {
+            background-color: #000080; /* Koyu mavi arka plan */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+        }
+        .container {
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0.13);
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
+            padding: 50px 35px;
+            color: #ffffff;
+        }
+        .container img {
+            width: 100px;
+            height: auto;
+            margin-bottom: 20px;
+        }
+        .container h2 {
+            font-size: 32px;
+            font-weight: 500;
+            line-height: 42px;
+            margin-bottom: 20px;
+        }
+        .container p {
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
+        .container .btn {
+            background-color: #ffffff;
+            color: #000080;
+            padding: 15px 30px;
+            font-size: 18px;
+            font-weight: 600;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .container .btn:hover {
+            background-color: #f1f1f1;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="static/images/unsuccessicon.png" alt="Unsuccessful Icon">
+        <h2>Oy Kullanma Başarısız</h2>
+        <p>Zaten oy kullandınız. Yeniden oy kullanamazsınız.</p>
+        <p>Unique ID'niz: {{ unique_id }}</p>
+        <a href="{{ url_for('index') }}" class="btn btn-primary">Anasayfaya Dön</a>
+    </div>
+</body>
+</html>
+{% endblock %}
